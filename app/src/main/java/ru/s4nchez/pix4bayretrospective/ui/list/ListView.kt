@@ -33,8 +33,8 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
     override fun setPhotos(photos: List<Photo>) {
         if (adapter == null) {
             adapter = PhotoAdapter(this)
-            recycler_view.adapter = adapter
         }
+        recycler_view.adapter = adapter
         adapter?.updateItems(photos)
     }
 

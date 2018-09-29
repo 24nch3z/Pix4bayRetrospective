@@ -4,7 +4,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.s4nchez.pix4bayretrospective.data.entities.Search
-import ru.s4nchez.pix4bayretrospective.data.repositories.PhotosRepository
 import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
 import ru.s4nchez.pix4bayretrospective.ui.common.BasePresenter
 
