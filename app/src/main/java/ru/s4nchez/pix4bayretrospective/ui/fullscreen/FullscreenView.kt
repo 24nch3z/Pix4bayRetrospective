@@ -2,12 +2,12 @@ package ru.s4nchez.pix4bayretrospective.ui.fullscreen
 
 import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_fullscreen.*
-import ru.s4nchez.pix4bayretrospective.GlideApp
 import ru.s4nchez.pix4bayretrospective.R
 import ru.s4nchez.pix4bayretrospective.data.entities.Photo
 import ru.s4nchez.pix4bayretrospective.ui.common.BaseFragment
+import ru.s4nchez.pix4bayretrospective.utils.GlideApp
 
-class FullscreenView: BaseFragment(), FullscreenContract.View {
+class FullscreenView : BaseFragment(), FullscreenContract.View {
 
     override val layout = R.layout.fragment_fullscreen
 
