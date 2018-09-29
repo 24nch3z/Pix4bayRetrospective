@@ -12,6 +12,7 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         dagger = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
                 .interactorModule(InteractorModule())
                 .presenterModule(PresenterModule())
                 .repositoryModule(RepositoryModule())

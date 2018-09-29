@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import ru.s4nchez.pix4bayretrospective.R
 import ru.s4nchez.pix4bayretrospective.data.entities.Photo
 
-class PhotoAdapter : RecyclerView.Adapter<PhotoHolder>() {
+class PhotoAdapter(val listener: OnItemClickListener) : RecyclerView.Adapter<PhotoHolder>() {
 
     val photos: ArrayList<Photo> = ArrayList()
 
@@ -25,6 +25,10 @@ class PhotoAdapter : RecyclerView.Adapter<PhotoHolder>() {
     override fun getItemCount() = photos.size
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
-        holder.bind(photos[position])
+        holder.bind(photos[position], listener)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: Photo)
     }
 }

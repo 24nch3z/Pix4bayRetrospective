@@ -14,4 +14,8 @@ abstract class BaseFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(layout, container, false)
     }
+
+    protected fun setFragment(fragment: Fragment, addToBackStackFlag: Boolean) {
+        (activity as BaseActivity).setFragment(fragment, addToBackStackFlag)
+    }
 }

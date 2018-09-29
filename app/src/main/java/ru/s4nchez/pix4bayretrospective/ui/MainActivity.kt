@@ -9,7 +9,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            setFragment(ListView.newInstance())
+            setFragment(ListView.newInstance(), false)
         }
     }
 }

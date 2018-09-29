@@ -9,13 +9,15 @@ import ru.s4nchez.pix4bayretrospective.data.entities.Photo
 
 class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(photo: Photo) {
+    fun bind(photo: Photo, listener: PhotoAdapter.OnItemClickListener) {
         with(itemView) {
             GlideApp
                 .with(context)
                 .load(photo.previewURL)
                 .placeholder(R.drawable.placeholder)
                 .into(image)
+
+            setOnClickListener { listener.onItemClick(photo) }
         }
     }
 }

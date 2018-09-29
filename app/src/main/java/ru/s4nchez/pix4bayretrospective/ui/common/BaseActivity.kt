@@ -12,10 +12,11 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
     }
 
-    protected fun setFragment(fragment: Fragment) {
+    fun setFragment(fragment: Fragment, addToBackStackFlag: Boolean) {
         val manager = supportFragmentManager
-        manager.beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit()
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        if (addToBackStackFlag) transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

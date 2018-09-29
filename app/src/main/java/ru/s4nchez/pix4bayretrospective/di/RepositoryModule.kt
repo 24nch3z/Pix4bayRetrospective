@@ -2,6 +2,7 @@ package ru.s4nchez.pix4bayretrospective.di
 
 import dagger.Module
 import dagger.Provides
+import ru.s4nchez.pix4bayretrospective.data.datasource.remote.APIInterface
 import ru.s4nchez.pix4bayretrospective.data.repositories.PhotosRepository
 import ru.s4nchez.pix4bayretrospective.data.repositories.SearchParamsRepository
 import javax.inject.Singleton
@@ -11,7 +12,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun providePhotosRepository(): PhotosRepository = PhotosRepository()
+    fun providePhotosRepository(apiInterface: APIInterface):
+            PhotosRepository = PhotosRepository(apiInterface)
 
     @Provides
     @Singleton

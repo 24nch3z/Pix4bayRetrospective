@@ -7,9 +7,10 @@ import ru.s4nchez.pix4bayretrospective.App
 import ru.s4nchez.pix4bayretrospective.R
 import ru.s4nchez.pix4bayretrospective.data.entities.Photo
 import ru.s4nchez.pix4bayretrospective.ui.common.BaseFragment
+import ru.s4nchez.pix4bayretrospective.ui.fullscreen.FullscreenView
 import javax.inject.Inject
 
-class ListView : BaseFragment(), ListContract.View {
+class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickListener {
 
     override val layout = R.layout.fragment_list
 
@@ -31,7 +32,7 @@ class ListView : BaseFragment(), ListContract.View {
 
     override fun setPhotos(photos: List<Photo>) {
         if (adapter == null) {
-            adapter = PhotoAdapter()
+            adapter = PhotoAdapter(this)
             recycler_view.adapter = adapter
         }
         adapter?.updateItems(photos)
@@ -44,5 +45,9 @@ class ListView : BaseFragment(), ListContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
+    }
+
+    override fun onItemClick(item: Photo) {
+        setFragment(FullscreenView.newInstance(item), true)
     }
 }

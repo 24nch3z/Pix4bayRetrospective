@@ -1,7 +1,10 @@
 package ru.s4nchez.pix4bayretrospective.data.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Photo(
         @SerializedName("id") var id: Int,
         @SerializedName("pageURL") var pageURL: String,
@@ -27,4 +30,4 @@ data class Photo(
         @SerializedName("user_id") var userId: Int,
         @SerializedName("user") var user: String,
         @SerializedName("userImageURL") var userImageURL: String
-)
+): Parcelable

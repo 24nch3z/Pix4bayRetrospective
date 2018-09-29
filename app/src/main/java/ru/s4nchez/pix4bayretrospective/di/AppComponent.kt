@@ -8,7 +8,8 @@ import javax.inject.Singleton
         modules = [
             InteractorModule::class,
             PresenterModule::class,
-            RepositoryModule::class
+            RepositoryModule::class,
+            AppModule::class
         ]
 )
 @Singleton
