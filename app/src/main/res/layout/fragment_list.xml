@@ -6,12 +6,13 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
+        style="@style/recycler_view"
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        app:spanCount="2"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"/>
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="2"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
