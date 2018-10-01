@@ -2,6 +2,8 @@ package ru.s4nchez.pix4bayretrospective.ui.list
 
 import android.arch.lifecycle.Observer
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView.LayoutManager
 import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
 import ru.s4nchez.pix4bayretrospective.ui.common.BasePresenter
 
@@ -22,6 +24,27 @@ class ListPresenter(
 
     private fun loadPhotos() {
         view?.showHideProgressBar(true)
-        interactor.loadPhotos()
+        interactor.loadFirstPage()
+    }
+
+    override fun loadNextPage() {
+        interactor.loadNextPage()
+    }
+
+    override fun handleOnScrollListener(manager: LayoutManager?) {
+        if (manager == null) return
+
+        val visibleItemCount = manager.childCount
+        val totalItemCount = manager.itemCount
+        val firstVisibleItemPosition = (manager as GridLayoutManager)
+                .findFirstVisibleItemPosition()
+
+        if (!interactor.isLoading &&
+                !interactor.isLastPage &&
+                visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+                firstVisibleItemPosition >= 0 && totalItemCount >= 90) {
+
+            interactor.loadNextPage()
+        }
     }
 }

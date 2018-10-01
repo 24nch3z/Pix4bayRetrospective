@@ -14,18 +14,27 @@ class PhotosInteractor(
         val searchParams: SearchParams
 ) {
 
-    var photos = ArrayList<Photo>()
     val trigger = MutableLiveData<Boolean>()
 
-    fun loadPhotos() {
-        val request: Call<Search> = photosRepository.loadPhotos()
+    var photos = ArrayList<Photo>()
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
+
+    private fun loadPhotos() {
+        if (isLoading || isLastPage) return
+
+        isLoading = true
+        val request: Call<Search> = photosRepository.loadPhotos(searchParams)
 
         request.enqueue(object : Callback<Search> {
             override fun onResponse(call: Call<Search>, search: Response<Search>) {
                 if (search.body()?.photos != null) {
                     photos.addAll(search.body()?.photos!!)
                     trigger.value = true
+                } else {
+                    isLastPage = true
                 }
+                isLoading = false
             }
 
             override fun onFailure(call: Call<Search>, t: Throwable) {
@@ -34,4 +43,14 @@ class PhotosInteractor(
         })
     }
 
+    fun loadFirstPage() {
+        searchParams.page = 1
+        isLastPage = false
+        loadPhotos()
+    }
+
+    fun loadNextPage() {
+        searchParams.page += 1
+        loadPhotos()
+    }
 }

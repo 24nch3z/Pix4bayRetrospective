@@ -1,6 +1,7 @@
 package ru.s4nchez.pix4bayretrospective.ui.list
 
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_list.*
 import ru.s4nchez.pix4bayretrospective.App
@@ -26,9 +27,20 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         App.dagger.inject(this)
         presenter.attachView(this)
         presenter.init(this)
+
+        recycler_view.adapter = adapter
+        recycler_view.addOnScrollListener(recyclerViewOnScrollListener)
+    }
+
+    private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            presenter.handleOnScrollListener(recyclerView.layoutManager!!)
+        }
     }
 
     override fun updatePhotos() {
@@ -37,7 +49,6 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
 
     override fun setAdapter(photos: List<Photo>) {
         adapter = PhotoAdapter(this, photos)
-        recycler_view.adapter = adapter
     }
 
     override fun showHideProgressBar(flag: Boolean) {

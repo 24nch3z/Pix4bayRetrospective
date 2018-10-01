@@ -8,5 +8,10 @@ import ru.s4nchez.pix4bayretrospective.data.entities.Search
 interface APIInterface {
 
     @GET("?")
-    fun get(@Query("key") key: String): Call<Search>
+    fun get(
+            @Query("key") key: String,
+            @Query("q") search: String?,
+            @Query("per_page") perPage: Int,
+            @Query("page") page: Int
+    ): Call<Search>
 }
