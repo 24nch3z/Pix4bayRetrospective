@@ -42,11 +42,8 @@ class ListPresenter(
         val firstVisibleItemPosition = (manager as GridLayoutManager)
                 .findFirstVisibleItemPosition()
 
-        if (!interactor.isLoading &&
-                !interactor.isLastPage &&
-                visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
                 firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE) {
-
             interactor.loadNextPage()
         }
     }

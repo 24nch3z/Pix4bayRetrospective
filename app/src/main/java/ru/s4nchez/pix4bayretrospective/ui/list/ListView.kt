@@ -36,7 +36,8 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
         recycler_view.addOnScrollListener(recyclerViewOnScrollListener)
     }
 
-    private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
+    private val recyclerViewOnScrollListener =
+            object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             presenter.handleOnScrollListener(recyclerView.layoutManager!!)

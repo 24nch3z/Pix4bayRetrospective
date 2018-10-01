@@ -17,12 +17,10 @@ class PhotosInteractor(
     val trigger = MutableLiveData<Boolean>()
 
     var photos = ArrayList<Photo>()
-    var isLastPage: Boolean = false
-    var isLoading: Boolean = false
+    private var isLastPage: Boolean = false
+    private var isLoading: Boolean = false
 
     private fun loadPhotos(isFirstPage: Boolean) {
-        if (isLoading) return
-
         isLoading = true
         val request: Call<Search> = photosRepository.loadPhotos(searchParams)
 
