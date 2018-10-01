@@ -28,14 +28,16 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
         super.onActivityCreated(savedInstanceState)
         App.dagger.inject(this)
         presenter.attachView(this)
+        presenter.init(this)
     }
 
-    override fun setPhotos(photos: List<Photo>) {
-        if (adapter == null) {
-            adapter = PhotoAdapter(this)
-        }
+    override fun updatePhotos() {
+        adapter?.updateItems()
+    }
+
+    override fun setAdapter(photos: List<Photo>) {
+        adapter = PhotoAdapter(this, photos)
         recycler_view.adapter = adapter
-        adapter?.updateItems(photos)
     }
 
     override fun showHideProgressBar(flag: Boolean) {

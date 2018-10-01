@@ -13,7 +13,7 @@ class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         with(itemView) {
             GlideApp
                 .with(context)
-                .load(photo.previewURL)
+                .load(photo.webformatURL)
                 .placeholder(R.drawable.placeholder)
                 .into(image)
 

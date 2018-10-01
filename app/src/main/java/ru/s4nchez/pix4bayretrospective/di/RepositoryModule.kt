@@ -12,7 +12,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun providePhotosRepository(apiInterface: APIInterface, searchParams: SearchParams):
-            PhotosRepository = PhotosRepository(apiInterface, searchParams)
+    fun providePhotosRepository(apiInterface: APIInterface):
+            PhotosRepository = PhotosRepository(apiInterface)
 
 }

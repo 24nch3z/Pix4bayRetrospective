@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import ru.s4nchez.pix4bayretrospective.R
 import ru.s4nchez.pix4bayretrospective.data.entities.Photo
 
-class PhotoAdapter(val listener: OnItemClickListener) : RecyclerView.Adapter<PhotoHolder>() {
+class PhotoAdapter(
+        val listener: OnItemClickListener,
+        val photos: List<Photo>
+) : RecyclerView.Adapter<PhotoHolder>() {
 
-    val photos: ArrayList<Photo> = ArrayList()
-
-    fun updateItems(newPhotos: List<Photo>) {
-        photos.clear()
-        photos.addAll(newPhotos)
+    fun updateItems() {
         notifyDataSetChanged();
     }
 
