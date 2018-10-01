@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView.LayoutManager
+import ru.s4nchez.pix4bayretrospective.data.entities.PAGE_SIZE
 import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
 import ru.s4nchez.pix4bayretrospective.ui.common.BasePresenter
 
@@ -42,7 +43,7 @@ class ListPresenter(
         if (!interactor.isLoading &&
                 !interactor.isLastPage &&
                 visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
-                firstVisibleItemPosition >= 0 && totalItemCount >= 90) {
+                firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE) {
 
             interactor.loadNextPage()
         }
