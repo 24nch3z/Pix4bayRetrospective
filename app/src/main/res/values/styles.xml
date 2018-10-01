@@ -9,7 +9,8 @@
     <style name="recycler_view">
         <item name="android:scrollbars">vertical</item>
         <item name="android:scrollbarSize">@dimen/scrollbar_width</item>
-        <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+        <item name="android:scrollbarThumbVertical">@color/scrollbar_thumb_color</item>
+        <item name="android:scrollbarTrackVertical">@color/scrollbar_track_color</item>
     </style>
 
 </resources>
