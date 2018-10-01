@@ -20,20 +20,21 @@ class PhotosInteractor(
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
 
-    private fun loadPhotos() {
-        if (isLoading || isLastPage) return
+    private fun loadPhotos(isFirstPage: Boolean) {
+        if (isLoading) return
 
         isLoading = true
         val request: Call<Search> = photosRepository.loadPhotos(searchParams)
 
         request.enqueue(object : Callback<Search> {
             override fun onResponse(call: Call<Search>, search: Response<Search>) {
+
                 if (search.body()?.photos != null) {
+                    if (isFirstPage) photos.clear()
                     photos.addAll(search.body()?.photos!!)
                     trigger.value = true
-                } else {
-                    isLastPage = true
-                }
+                } else isLastPage = true
+
                 isLoading = false
             }
 
@@ -44,13 +45,17 @@ class PhotosInteractor(
     }
 
     fun loadFirstPage() {
+        if (isLoading) return
+
         searchParams.page = 1
         isLastPage = false
-        loadPhotos()
+        loadPhotos(true)
     }
 
     fun loadNextPage() {
+        if (isLoading || isLastPage) return
+
         searchParams.page += 1
-        loadPhotos()
+        loadPhotos(false)
     }
 }

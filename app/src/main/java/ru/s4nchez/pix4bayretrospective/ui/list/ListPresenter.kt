@@ -20,12 +20,14 @@ class ListPresenter(
             view?.showHideProgressBar(false)
             view?.updatePhotos()
         })
-        loadPhotos()
+        loadFirstPage()
     }
 
-    private fun loadPhotos() {
-        view?.showHideProgressBar(true)
-        interactor.loadFirstPage()
+    private fun loadFirstPage() {
+        if (photos.isEmpty()) {
+            view?.showHideProgressBar(true)
+            interactor.loadFirstPage()
+        }
     }
 
     override fun loadNextPage() {
