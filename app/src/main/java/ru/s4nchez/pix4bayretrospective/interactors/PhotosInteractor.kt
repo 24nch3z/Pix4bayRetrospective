@@ -30,13 +30,14 @@ class PhotosInteractor(
                 if (search.body()?.photos != null) {
                     if (isFirstPage) photos.clear()
                     photos.addAll(search.body()?.photos!!)
-                    trigger.value = true
                 } else isLastPage = true
 
+                trigger.value = search.body()?.photos != null
                 isLoading = false
             }
 
             override fun onFailure(call: Call<Search>, t: Throwable) {
+                trigger.value = false
                 call.cancel()
             }
         })

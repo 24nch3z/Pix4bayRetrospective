@@ -16,9 +16,10 @@ class ListPresenter(
 
     override fun init(fragment: Fragment) {
         view?.setAdapter(photos)
-        interactor.trigger.observe(fragment, Observer<Boolean> { v ->
+        interactor.trigger.observe(fragment, Observer<Boolean> { value ->
             view?.showHideProgressBar(false)
-            view?.updatePhotos()
+            if (value!!) view?.updatePhotos()
+            view?.showHideEmptyListView(photos.isEmpty())
         })
         loadFirstPage()
     }

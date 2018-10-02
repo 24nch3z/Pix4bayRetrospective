@@ -56,6 +56,10 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
         progress_bar.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
+    override fun showHideEmptyListView(flag: Boolean) {
+        empty_list.visibility = if (flag) View.VISIBLE else View.GONE
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()

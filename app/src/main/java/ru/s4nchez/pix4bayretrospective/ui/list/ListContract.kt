@@ -10,6 +10,7 @@ interface ListContract {
         fun setAdapter(photos: List<Photo>)
         fun updatePhotos()
         fun showHideProgressBar(flag: Boolean)
+        fun showHideEmptyListView(flag: Boolean)
     }
 
     interface Presenter {
