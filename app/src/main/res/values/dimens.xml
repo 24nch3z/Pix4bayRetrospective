@@ -2,6 +2,7 @@
 <resources>
     <dimen name="scrollbar_width">4dp</dimen>
     <dimen name="photo_height">150dp</dimen>
+    <dimen name="recycler_view_spacing">2dp</dimen>
 
     <integer name="recycler_view_span_count">3</integer>
 </resources>

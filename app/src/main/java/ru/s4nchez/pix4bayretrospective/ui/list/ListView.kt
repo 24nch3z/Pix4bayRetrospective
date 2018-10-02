@@ -34,6 +34,9 @@ class ListView : BaseFragment(), ListContract.View, PhotoAdapter.OnItemClickList
 
         recycler_view.adapter = adapter
         recycler_view.addOnScrollListener(recyclerViewOnScrollListener)
+        recycler_view.addItemDecoration(ItemDecoration(
+                resources.getInteger(R.integer.recycler_view_span_count),
+                resources.getDimension(R.dimen.recycler_view_spacing).toInt()))
     }
 
     private val recyclerViewOnScrollListener =
