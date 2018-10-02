@@ -1,6 +1,6 @@
 package ru.s4nchez.pix4bayretrospective.data.entities
 
-val PAGE_SIZE = 90
+val PAGE_SIZE = 96
 
 class SearchParams {
     var search: String? = null
