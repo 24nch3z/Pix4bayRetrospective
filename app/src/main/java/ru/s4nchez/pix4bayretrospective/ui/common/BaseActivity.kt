@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.s4nchez.pix4bayretrospective.R
 import ru.s4nchez.pix4bayretrospective.utils.isInternetConnected
