@@ -3,4 +3,5 @@
     <string name="empty_list">Список пуст</string>
     <string name="loading_error">При загрузке произошла ошибка</string>
     <string name="network_disable">Нет интернет соединения</string>
+    <string name="search">Поиск</string>
 </resources>

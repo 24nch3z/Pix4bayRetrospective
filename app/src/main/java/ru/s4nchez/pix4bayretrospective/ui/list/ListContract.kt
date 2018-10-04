@@ -17,5 +17,7 @@ interface ListContract {
         fun init(fragment: Fragment)
         fun loadNextPage()
         fun handleOnScrollListener(manager: LayoutManager?)
+        fun search(search: String?)
+        fun getSearch(): String?
     }
 }

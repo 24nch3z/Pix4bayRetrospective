@@ -10,8 +10,8 @@ import ru.s4nchez.pix4bayretrospective.data.entities.SearchParams
 import ru.s4nchez.pix4bayretrospective.data.repositories.PhotosRepository
 
 class PhotosInteractor(
-        val photosRepository: PhotosRepository,
-        val searchParams: SearchParams
+        private val photosRepository: PhotosRepository,
+        private val searchParams: SearchParams
 ) {
 
     val trigger = MutableLiveData<Boolean>()
@@ -19,10 +19,12 @@ class PhotosInteractor(
     var photos = ArrayList<Photo>()
     private var isLastPage: Boolean = false
     private var isLoading: Boolean = false
+    private var lastRequest: Call<Search>? = null
 
     private fun loadPhotos(isFirstPage: Boolean) {
         isLoading = true
         val request: Call<Search> = photosRepository.loadPhotos(searchParams)
+        lastRequest = request
 
         request.enqueue(object : Callback<Search> {
             override fun onResponse(call: Call<Search>, search: Response<Search>) {
@@ -46,6 +48,7 @@ class PhotosInteractor(
     fun loadFirstPage() {
         if (isLoading) return
 
+        searchParams.search = null
         searchParams.page = 1
         isLastPage = false
         loadPhotos(true)
@@ -56,5 +59,20 @@ class PhotosInteractor(
 
         searchParams.page += 1
         loadPhotos(false)
+    }
+
+    fun search(search: String?) {
+        searchParams.search = search
+        searchParams.page = 1
+        isLastPage = false
+        cancelRequest()
+        loadPhotos(true)
+    }
+
+    fun getSearch() = searchParams.search
+
+    private fun cancelRequest() {
+        lastRequest?.cancel()
+        isLoading = false
     }
 }

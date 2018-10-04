@@ -9,10 +9,10 @@ import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
 import ru.s4nchez.pix4bayretrospective.ui.common.BasePresenter
 
 class ListPresenter(
-        val interactor: PhotosInteractor
+        private val interactor: PhotosInteractor
 ) : BasePresenter<ListContract.View>(), ListContract.Presenter {
 
-    var photos = interactor.photos
+    private var photos = interactor.photos
 
     override fun init(fragment: Fragment) {
         view?.setAdapter(photos)
@@ -48,4 +48,10 @@ class ListPresenter(
             interactor.loadNextPage()
         }
     }
+
+    override fun search(search: String?) {
+        interactor.search(search)
+    }
+
+    override fun getSearch() = interactor.getSearch()
 }
