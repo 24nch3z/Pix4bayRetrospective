@@ -6,4 +6,5 @@ class SearchParams {
     var search: String? = null
     val perPage: Int = PAGE_SIZE
     var page: Int = 1
+    val safeSearch: Boolean = false
 }

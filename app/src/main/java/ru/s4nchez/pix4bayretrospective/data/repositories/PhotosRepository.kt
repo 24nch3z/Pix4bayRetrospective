@@ -14,7 +14,8 @@ class PhotosRepository(var apiInterface: APIInterface) {
                     key = API_KEY,
                     search = search,
                     perPage = perPage,
-                    page = page
+                    page = page,
+                    safeSearch = safeSearch
             )
         }
     }
