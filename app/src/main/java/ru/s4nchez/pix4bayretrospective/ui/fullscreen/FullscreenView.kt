@@ -35,7 +35,7 @@ class FullscreenView : BaseFragment(), FullscreenContract.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        photo_view.load(context!!, photo?.largeImageURL!!, fun(isSuccess: Boolean) {
+        photo_view.load(photo?.largeImageURL!!, fun(isSuccess: Boolean) {
             progress_bar.visibility = View.GONE
             if (!isSuccess) this.shortResToast(R.string.loading_error)
         })

@@ -16,8 +16,8 @@ fun View.visibilityByFlag(flag: Boolean) {
     this.visibility = if (flag) View.VISIBLE else View.GONE
 }
 
-fun ImageView.load(context: Context, url: String, completeCallback: (isSuccess: Boolean) -> Unit) {
-    GlideApp.with(context)
+fun ImageView.load(url: String, completeCallback: (isSuccess: Boolean) -> Unit) {
+    GlideApp.with(this)
             .load(url)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
