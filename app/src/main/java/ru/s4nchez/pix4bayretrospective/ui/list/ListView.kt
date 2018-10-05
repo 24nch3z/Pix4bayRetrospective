@@ -11,12 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_list.*
 import ru.s4nchez.pix4bayretrospective.App
 import ru.s4nchez.pix4bayretrospective.R
-import ru.s4nchez.pix4bayretrospective.data.datasource.remote.APIInterface
 import ru.s4nchez.pix4bayretrospective.data.entities.Photo
-import ru.s4nchez.pix4bayretrospective.data.entities.SearchParams
-import ru.s4nchez.pix4bayretrospective.data.repositories.PhotosRepository
-import ru.s4nchez.pix4bayretrospective.di.AppModule
-import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
 import ru.s4nchez.pix4bayretrospective.ui.common.BaseFragment
 import ru.s4nchez.pix4bayretrospective.ui.fullscreen.FullscreenView
 import ru.s4nchez.pix4bayretrospective.utils.visibilityByFlag
@@ -37,9 +32,7 @@ class ListView : BaseFragment(), ContractView, PhotoAdapter.OnItemClickListener 
     var adapter: PhotoAdapter? = null
 
     @ProvidePresenter
-    fun providePresenter(): ListPresenter {
-        return presenter
-    }
+    fun providePresenter() = presenter
 
     private val recyclerViewOnScrollListener =
             object : RecyclerView.OnScrollListener() {
@@ -51,12 +44,7 @@ class ListView : BaseFragment(), ContractView, PhotoAdapter.OnItemClickListener 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
-//        presenter.attachView(this)
         presenter.init(this)
-
-        recycler_view.adapter = adapter
         recycler_view.addOnScrollListener(recyclerViewOnScrollListener)
         recycler_view.addItemDecoration(ItemDecoration(
                 resources.getInteger(R.integer.recycler_view_span_count),
@@ -64,7 +52,6 @@ class ListView : BaseFragment(), ContractView, PhotoAdapter.OnItemClickListener 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        presenter = ListPresenter(PhotosInteractor(PhotosRepository(AppModule(context!!).provideAPIInterface(AppModule(context!!).provideRetrofitClient(context!!))), SearchParams()))
         App.dagger.inject(this)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -113,6 +100,7 @@ class ListView : BaseFragment(), ContractView, PhotoAdapter.OnItemClickListener 
 
     override fun setAdapter(photos: List<Photo>) {
         adapter = PhotoAdapter(this, photos)
+        recycler_view.adapter = adapter
     }
 
     override fun showHideProgressBar(flag: Boolean) {
@@ -122,11 +110,6 @@ class ListView : BaseFragment(), ContractView, PhotoAdapter.OnItemClickListener 
     override fun showHideEmptyListView(flag: Boolean) {
         empty_list.visibilityByFlag(flag)
     }
-
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        presenter.detachView()
-//    }
 
     override fun onItemClick(item: Photo) {
         setFragment(FullscreenView.newInstance(item), true)

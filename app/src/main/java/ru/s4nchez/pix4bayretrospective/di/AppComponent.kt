@@ -1,6 +1,7 @@
 package ru.s4nchez.pix4bayretrospective.di
 
 import dagger.Component
+import ru.s4nchez.pix4bayretrospective.ui.fullscreen.FullscreenView
 import ru.s4nchez.pix4bayretrospective.ui.list.ListView
 import javax.inject.Singleton
 
@@ -15,4 +16,5 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
     fun inject(view: ListView);
+    fun inject(view: FullscreenView);
 }
