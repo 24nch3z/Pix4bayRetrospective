@@ -32,6 +32,7 @@ ext {
     dagger = '2.16'
     photoView = '2.1.4'
     lifecycle = '1.1.1'
+    moxy = '1.5.5'
 }
 
 dependencies {
@@ -67,4 +68,10 @@ dependencies {
     // Lifecycle, LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycle"
     kapt "android.arch.lifecycle:compiler:$lifecycle"
+
+    // Moxy
+    implementation "com.arello-mobile:moxy:$moxy"
+    implementation "com.arello-mobile:moxy-android:$moxy"
+    implementation "com.arello-mobile:moxy-app-compat:$moxy"
+    kapt "com.arello-mobile:moxy-compiler:$moxy"
 }

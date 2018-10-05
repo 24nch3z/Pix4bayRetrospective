@@ -4,29 +4,32 @@ import android.arch.lifecycle.Observer
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView.LayoutManager
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import ru.s4nchez.pix4bayretrospective.data.entities.PAGE_SIZE
 import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
-import ru.s4nchez.pix4bayretrospective.ui.common.BasePresenter
+import javax.inject.Inject
 
-class ListPresenter(
+@InjectViewState
+class ListPresenter @Inject constructor(
         private val interactor: PhotosInteractor
-) : BasePresenter<ListContract.View>(), ListContract.Presenter {
+) : MvpPresenter<ContractView>(), ContractPresenter {
 
     private var photos = interactor.photos
 
     override fun init(fragment: Fragment) {
-        view?.setAdapter(photos)
+        viewState.setAdapter(photos)
         interactor.trigger.observe(fragment, Observer<Boolean> { value ->
-            view?.showHideProgressBar(false)
-            if (value!!) view?.updatePhotos()
-            view?.showHideEmptyListView(photos.isEmpty())
+            viewState.showHideProgressBar(false)
+            if (value!!) viewState.updatePhotos()
+            viewState.showHideEmptyListView(photos.isEmpty())
         })
         loadFirstPage()
     }
 
     private fun loadFirstPage() {
         if (photos.isEmpty()) {
-            view?.showHideProgressBar(true)
+            viewState.showHideProgressBar(true)
             interactor.loadFirstPage()
         }
     }
