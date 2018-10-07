@@ -9,8 +9,8 @@ import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.s4nchez.pix4bayretrospective.R
+import ru.s4nchez.pix4bayretrospective.extensions.visibilityByFlag
 import ru.s4nchez.pix4bayretrospective.utils.isInternetConnected
-import ru.s4nchez.pix4bayretrospective.utils.visibilityByFlag
 
 abstract class BaseActivity : MvpAppCompatActivity() {
 

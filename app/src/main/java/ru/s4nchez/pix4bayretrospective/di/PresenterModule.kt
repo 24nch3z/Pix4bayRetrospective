@@ -1,5 +1,6 @@
 package ru.s4nchez.pix4bayretrospective.di
 
+import android.app.DownloadManager
 import dagger.Module
 import dagger.Provides
 import ru.s4nchez.pix4bayretrospective.interactors.PhotosInteractor
@@ -14,6 +15,7 @@ class PresenterModule {
             ListPresenter = ListPresenter(photosInteractor)
 
     @Provides
-    fun provideFullscreenPresenter() = FullscreenPresenter()
+    fun provideFullscreenPresenter(downloadManager: DownloadManager) =
+            FullscreenPresenter(downloadManager)
 
 }
