@@ -12,10 +12,10 @@ class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(photo: Photo, listener: PhotoAdapter.OnItemClickListener) {
         with(itemView) {
             GlideApp
-                .with(context)
-                .load(photo.webformatURL)
-                .placeholder(R.drawable.placeholder)
-                .into(image)
+                    .with(context)
+                    .load(photo.webformatURL)
+                    .placeholder(R.drawable.placeholder)
+                    .into(image)
 
             setOnClickListener { listener.onItemClick(photo) }
         }
