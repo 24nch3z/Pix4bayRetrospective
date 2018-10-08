@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.MvpAppCompatFragment
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : MvpAppCompatFragment() {
 
     protected abstract val layout: Int
 

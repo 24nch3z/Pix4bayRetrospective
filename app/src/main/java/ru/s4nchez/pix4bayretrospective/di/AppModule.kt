@@ -1,5 +1,6 @@
 package ru.s4nchez.pix4bayretrospective.di
 
+import android.app.DownloadManager
 import android.content.Context
 import dagger.Module
 import dagger.Provides
@@ -18,6 +19,11 @@ class AppModule(private val context: Context) {
     @Provides
     @Singleton
     fun provideContext() = context
+
+    @Provides
+    @Singleton
+    fun provideDownloadManager(context: Context): DownloadManager =
+        context.applicationContext.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
     @Provides
     @Singleton

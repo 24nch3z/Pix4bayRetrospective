@@ -6,13 +6,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.s4nchez.pix4bayretrospective.R
+import ru.s4nchez.pix4bayretrospective.extensions.visibilityByFlag
 import ru.s4nchez.pix4bayretrospective.utils.isInternetConnected
-import ru.s4nchez.pix4bayretrospective.utils.visibilityByFlag
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : MvpAppCompatActivity() {
 
     private val networkStatusChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {

@@ -4,4 +4,9 @@
     <string name="loading_error">При загрузке произошла ошибка</string>
     <string name="network_disable">Нет интернет соединения</string>
     <string name="search">Поиск</string>
+    <string name="download">Скачать</string>
+    <string name="settings">Настройки</string>
+
+    <string name="screen_fullscreen_download_start">Загрузка файла началась</string>
+    <string name="screen_fullscreen_download_permission">Для загрузки надо дать доступ к памяти приложению</string>
 </resources>

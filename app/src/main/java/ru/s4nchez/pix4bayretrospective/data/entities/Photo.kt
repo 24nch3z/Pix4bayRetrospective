@@ -30,4 +30,7 @@ data class Photo(
         @SerializedName("user_id") var userId: Int,
         @SerializedName("user") var user: String,
         @SerializedName("userImageURL") var userImageURL: String
-): Parcelable
+) : Parcelable {
+
+    fun generateFileName(): String = "pixabay.com-$id.jpg";
+}

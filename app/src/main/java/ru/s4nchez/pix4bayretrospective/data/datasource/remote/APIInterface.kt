@@ -12,6 +12,7 @@ interface APIInterface {
             @Query("key") key: String,
             @Query("q") search: String?,
             @Query("per_page") perPage: Int,
-            @Query("page") page: Int
+            @Query("page") page: Int,
+            @Query("safesearch") safeSearch: Boolean
     ): Call<Search>
 }

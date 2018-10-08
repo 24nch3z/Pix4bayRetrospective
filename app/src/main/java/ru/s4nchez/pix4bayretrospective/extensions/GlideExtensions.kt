@@ -1,20 +1,12 @@
-package ru.s4nchez.pix4bayretrospective.utils
+package ru.s4nchez.pix4bayretrospective.extensions
 
-import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-
-fun View.visibilityByFlag(flag: Boolean) {
-    this.visibility = if (flag) View.VISIBLE else View.GONE
-}
+import ru.s4nchez.pix4bayretrospective.utils.GlideApp
 
 fun ImageView.load(url: String, completeCallback: (isSuccess: Boolean) -> Unit) {
     GlideApp.with(this)
@@ -31,8 +23,4 @@ fun ImageView.load(url: String, completeCallback: (isSuccess: Boolean) -> Unit) 
                 }
             })
             .into(this)
-}
-
-fun Fragment.shortResToast(@StringRes res: Int) {
-    if (this.context != null) Toast.makeText(this.context, res, Toast.LENGTH_SHORT).show()
 }
